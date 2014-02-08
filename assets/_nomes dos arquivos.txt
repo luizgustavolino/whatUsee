@@ -1,0 +1,10 @@
+
+
+Help, Lumi!
+Imagem do fundo: verde com smile, vermelho sad
+Hint: merge com o question!
+botão: certo com um frame só
+botão certo/errado: merge com o fundo
+
+
+"backgroundtile", "backgroundtilegreen", "backgroundtilered", "button_hintexit_chosen", "button_hintexit_disabled", "button_hintexit_normal", "buttongame_chosen", "buttongame_normal","buttonstage_chosen", "button_normal", "choice_right01", "choice_right02", "choice_right03", "choice_right04", "choice_wrong", "holder_drawings", "holder_timer", "home_credits", "home_title", "homeimg1", "homeimg2", "homestar_none", "homestar_right", "homestar_wrong", "logoingame", "staringame_none", "staringame_right", "staringame_wrong"

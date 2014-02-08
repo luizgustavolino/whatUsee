@@ -1,0 +1,180 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+  		<!--
+		  
+		  WhatUsee,
+		  developed by tsubasa soft. on the Global Game Jam, 2014.
+		  
+		  Code: @luizgustavolino
+		  Assets: @lumiMae
+		  
+		  Thank you for playing. 
+		  Ah! Visit our blog at tsubasa.com.br.
+		  
+		 -->
+		<meta name="viewport" content="width=1024"/>
+		<title>WhatUsee</title>
+		<link rel="shortcut icon" href="http://tsubasa.com.br/blog/wp-content/themes/pixelpower/favicon.gif" />
+		<meta charset="utf-8">
+		
+	    <style>
+	    	
+	    	body, div, canvas, p{
+	    	    padding: 0px;
+	    	    margin: 0px;
+	    	}
+	    	
+	    	body{
+	    	    width:100%;
+	    	    height:100%;
+	    	    font-size: 0pt;
+	    	    background-color: black;
+	    	}
+	    	
+	    	canvas{
+	    	    margin: 0px 0px 0px 0px;
+	    	    top: 20px;
+	    	    left: -480px;
+	    	    margin-left: 50%;
+	    	    position: absolute;
+	    	}
+	    	
+	    	#bg{
+	    		background-color: #353535;
+	    	}
+	    	
+	    	img{
+	    		display: none;
+	    	}
+	    	
+	    	#dlog{
+	    		color: white;
+	    		font-family: verdana;
+	    		font-size: 12px;
+	    		display: none;
+	    	}
+	    	
+	    </style>
+	    
+		<script type="text/javascript">
+		
+			var game = {};
+			game.scenes = {};
+			game.size = {
+				width: 960,
+				height: 640
+			};
+			
+			function dlog(_text) {
+				document.getElementById("dlog").innerHTML = _text;
+			}
+		</script>
+		
+		<script src="http://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+		<script>
+			WebFont.load({
+			    google: {
+      				families:['Just+Another+Hand::latin']
+    			}
+  			});
+		</script>
+		
+		<script type="text/javascript" charset="utf-8" src="js/engine.js"></script>
+		<script type="text/javascript" charset="utf-8" src="js/resources.js"/></script>
+		<script type="text/javascript" charset="utf-8" src="js/button.js"/></script>
+		<script type="text/javascript" charset="utf-8" src="js/background.js"/></script>
+		<script type="text/javascript" charset="utf-8" src="js/sprite.js"/></script>
+		<script type="text/javascript" charset="utf-8" src="js/textfield.js"/></script>
+		<script type="text/javascript" charset="utf-8" src="js/config.js"/></script>
+		
+		<script type="text/javascript" charset="utf-8" src="js/scene-intro.js"/></script>
+		<script type="text/javascript" charset="utf-8" src="js/scene-game.js"/></script>
+		
+		<script type="text/javascript">
+		
+
+			<!-- LAUNCH -->
+	    	function onBodyLoad(){
+				try {
+					dlog("onBodyLoad");
+					game.engine.bootstrap(function() {
+						game.engine.showScene(makeIntroScene());
+					});	
+				}catch (error) {
+					dlog("onBodyLoad error: "+error+" "+error.stack)	
+				}
+	    	}
+	    	
+	    	var IMGList = ["backgroundtile", "backgroundtilegreen", "backgroundtilered", "button_hintexit_chosen", "button_hintexit_disabled", "button_hintexit_normal", "buttongame_chosen", "buttongame_normal","buttonstage_chosen", "buttonstage_normal", "choice_right01", "choice_right02", "choice_right03", "choice_right04", "choice_wrong", "holder_drawings", "holder_timer", "home_credits", "home_title", "homeimg1", "homeimg2", "homestar_none", "homestar_right", "homestar_wrong", "logoingame", "staringame_none", "staringame_right", "staringame_wrong"];
+	    	
+	    	var count = GD.stages.length;
+			for(var i = 0; i < count; i++){
+				var stage = GD.stages[i]
+				for (var j = 0; j < stage.levels.length; j++) {
+					var level = stage.levels[j];
+					var itens = ["question","answer","hint1","hint2"];
+					for (var k = 0; k < count; k++) {
+						IMGList.push("drawings/"+level.drawing+"_"+itens[k])	
+					}
+					
+				}
+			}
+	    	
+	    	var assetsLoaded = 0;
+	    	var assetsTotal  = IMGList.length;
+	    	
+	    	function assetsReady() {
+	    		assetsLoaded++;
+	    		drawLoading(assetsLoaded/assetsTotal);
+	    	}
+	    	
+	    	<!-- LOADING BAR -->
+	    	function drawLoading(_percent) {
+	    		
+	    		if(game.engine.ready) return;
+	    		if(_percent > 1) _percent = 1;
+	    		
+	    		game.engine.clear("l1")
+	    		var contextDom = document.getElementById("l1");
+	    		if(!contextDom) return;
+	    		
+	    		var	canvasCxt  = contextDom.getContext("2d");
+	    			
+	    		canvasCxt.strokeStyle = "#FFF";
+	    		canvasCxt.fillStyle = "#FFF";
+	    		canvasCxt.strokeRect(380,305,200,30);
+	    		canvasCxt.fillRect(382,307,196*_percent,30-4);	
+	    	}
+
+		</script>
+    </head>
+    <body onload="onBodyLoad()">
+		<center>
+		    <div id="game">
+		    	<p id="dlog">---</p>
+		    	<canvas id="bg" width="960" height="640"></canvas>
+		    	<canvas id="l1" width="960" height="640"></canvas>
+		    	<canvas id="l2" width="960" height="640"></canvas>
+		    </div> 
+		</center>
+		
+		<script>	
+			<!-- LOAD IMAGES -->
+			function addImageTag(src, tid, onload) {
+			    var img = document.createElement('img');
+			    if(onload) img.onload = onload;
+			    if(src) img.src= src;
+			    if(tid) img.id = tid;
+				document.body.insertBefore(img, document.body.firstChild)
+			}
+			
+			for(var i in IMGList){
+				addImageTag("assets/"+IMGList[i]+".png", IMGList[i], assetsReady);
+			} 
+			
+		</script>
+    </body>
+</html>
