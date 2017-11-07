@@ -5,7 +5,7 @@ Developed on the Global Game Jam, 2014.
 
 *“We don’t see things as they are, we see them as we are”*
 
-![Screenshot](http://tsubasa.com.br/blog/wp-content/uploads/2014/01/ggj14screenshot.png)
+![Screenshot](http://tsubasa.com.br/.blog/wp-content/uploads/2014/01/ggj14screenshot.png)
 
 Can you find out what the shape really is?
 <hr/>
@@ -16,11 +16,5 @@ You can play on a web browser or mobile device (tested on: ipad 3 gen., iphone 5
 - Global Game Jam page: http://globalgamejam.org/2014/games/whatusee
 
 Enjoy!
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
 <br/>
 ps: I swear it's a Horse! :-)
